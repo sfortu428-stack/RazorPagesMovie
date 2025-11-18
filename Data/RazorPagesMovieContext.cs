@@ -14,6 +14,10 @@ namespace RazorPagesMovie.Data
         {
         }
 
-        public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; } = default!;
+         public DbSet<Director> Director { get; set; }
+        public DbSet<Movie> Movie { get; set; }
+        public DbSet<Actor> Actors { get; set; }
+
+
     }
 }

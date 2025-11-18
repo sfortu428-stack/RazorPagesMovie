@@ -1,31 +1,68 @@
-html {
-  font-size: 14px;
+.movie-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform .15s ease, box-shadow .15s ease;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
+    .movie-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+    }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.movie-img {
+    height: 180px;
+    object-fit: cover;
 }
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Global dark theme */
 body {
-  margin-bottom: 60px;
+    background-color: #121212;
+    color: #e5e5e5;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Cards */
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 15px;
+    color: #e5e5e5;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+    .card:hover {
+        background-color: #252525;
+        border-color: #555;
+    }
+
+    /* Movie titles */
+    .card h5 {
+        color: #ffffff;
+    }
+
+/* Inputs */
+input, select {
+    background-color: #1c1c1c !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+}
+
+/* Button */
+button, .btn-primary {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+    button:hover, .btn-primary:hover {
+        background-color: #0b5ed7 !important;
+    }
+
+/* Navbar */
+.navbar, footer {
+    background-color: #000 !important;
+    color: #fff;
+}
+
+/* Placeholder for images */
+img.movie-poster {
+    background-color: #2a2a2a;
 }

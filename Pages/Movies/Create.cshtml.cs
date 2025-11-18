@@ -12,26 +12,33 @@ namespace RazorPagesMovie.Pages.Movies
 {
     public class CreateModel : PageModel
     {
-        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public CreateModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
+        public CreateModel(RazorPagesMovieContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
+        public Movie Movie { get; set; }
+
+        public SelectList DirectorList { get; set; }
+        public SelectList ActorList { get; set; }
+
         public IActionResult OnGet()
         {
+            DirectorList = new SelectList(_context.Director, "Id", "Name");
+            ActorList = new SelectList(_context.Actors, "Id", "FirstName");
+
             return Page();
         }
 
-        [BindProperty]
-        public Movie Movie { get; set; } = default!;
-
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                DirectorList = new SelectList(_context.Director, "Id", "Name");
+                ActorList = new SelectList(_context.Actors, "Id", "FirstName");
                 return Page();
             }
 
