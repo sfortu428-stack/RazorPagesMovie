@@ -15,9 +15,12 @@
 }
 /* Global dark theme */
 body {
-    background-color: #2F3E46;
-    color: #e5e5e5;
+    background-color: #2F4F4F; /* Dark Slate Gray */
+    margin: 0;
+    min-height: 100vh;
+    color: white; /* Makes text readable */
 }
+
 
 /* Cards */
 .card {
@@ -89,4 +92,12 @@ img.movie-poster {
         background: rgba(0, 0, 0, 0.65);
         z-index: -1;
     }
+.page-background {
+    background-color: #2F4F4F; /* Dark Slate Gray */
+    padding: 40px;
+    border-radius: 15px;
+    color: white; /* ensures text is readable */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin-top: 30px;
+}
 
