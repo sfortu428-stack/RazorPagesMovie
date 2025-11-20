@@ -39,4 +39,5 @@ public class Movie
 
     public string ImageUrl { get; set; }
     public object Reviews { get; internal set; }
+    public ICollection<Review> Review { get; set; } = new List<Review>();
 }
