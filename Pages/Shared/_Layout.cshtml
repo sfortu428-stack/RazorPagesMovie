@@ -12,6 +12,15 @@
 </head>
 <body>
     <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-white bg-white border-bottom box-shadow mb-3 nav-link text-white">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index"> Blockbusters</a>
+                <style>
+                    .navbar-brand {
+                        color: white !important;
+                    }
+                </style>
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-white bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index"> Blockbusters</a>
@@ -37,12 +46,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - RazorPagesMovie - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
