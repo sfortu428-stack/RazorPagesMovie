@@ -64,3 +64,25 @@
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+<h3>Leave a Review</h3>
+<form asp-action="AddReview" method="post">
+    <input type="hidden" name="MovieId" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="UserName">Name</label>
+        <input type="text" name="UserName" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Rating">Rating (1-5)</label>
+        <input type="number" name="Rating" min="1" max="5" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Comment">Comment</label>
+        <textarea name="Comment" class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
+</form>
+
