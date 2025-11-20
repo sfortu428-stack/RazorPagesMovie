@@ -174,7 +174,7 @@ namespace RazorPagesMovie.Pages
         {
             if (ModelState.IsValid)
             {
-                review.CreatedAt = DateTime.Now;
+                review.CreatedAt = DateTime.Now; 
                 _context.Review.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Details), new { id = review.MovieId });
