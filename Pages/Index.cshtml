@@ -1,13 +1,15 @@
 ﻿@page
 @model IndexModel
 
-<h1>Welcome to Blockbusters Movies</h1>
-<p>
-    <a asp-page="Create" class="btn btn-success">Create New Movie</a>
-</p>
+<div class="page-background">
 
+    <h1 class="display-4 fw-bold">
+        <i class="fa-solid fa-film" style="color:#00d1ff;"></i>
+        Welcome to Blockbusters Movies
+    </h1>
 
-<p>Explore our movie collection!</p>
+    <p class="mt-3">Explore our movie collection!</p>
 
-<a asp-page="/Movies/Index" class="btn btn-primary">Go to Movies</a>
+    <a class="btn btn-primary" asp-page="/Movies/Index">Go to Movies</a>
 
+</div>

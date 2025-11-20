@@ -50,14 +50,9 @@
     <!-- Movie List -->
     <div class="row g-4">
 
-        @foreach (var item in Model.Movie)
-        {
-
+        @foreach (var item in Model.Movie){
             <div class="col-md-6 col-lg-4">
                 <div class="card movie-card shadow-sm h-100">
-
-                    <img src="@item.ImageUrl"
-                         alt="@item.Title poster" class="img-fluid mb-2" style="height: 250px; width: 100%; object-fit: cover; border-radius: 8px;" />
 
                     <img src="https://via.placeholder.com/600x300?text=@item.Title"
                          class="card-img-top movie-img" alt="@item.Title" />
