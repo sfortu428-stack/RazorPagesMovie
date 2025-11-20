@@ -38,5 +38,8 @@ public class Movie
     public Actor? Actor { get; set; }
 
     public string ImageUrl { get; set; }
+    public int? TimeslotId { get; set; }   // FK
+public Timeslot? Timeslot { get; set; } // Navigation Property
+
 
 }

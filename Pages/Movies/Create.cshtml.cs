@@ -24,11 +24,15 @@ namespace RazorPagesMovie.Pages.Movies
 
         public SelectList DirectorList { get; set; }
         public SelectList ActorList { get; set; }
+        public SelectList TimeslotList { get; set; } = default!;
+
+
 
         public IActionResult OnGet()
         {
             DirectorList = new SelectList(_context.Director, "Id", "Name");
             ActorList = new SelectList(_context.Actors, "Id", "FirstName");
+            TimeslotList = new SelectList(_context.Timeslot, "Id", "Description");
 
             return Page();
         }
@@ -39,6 +43,7 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 DirectorList = new SelectList(_context.Director, "Id", "Name");
                 ActorList = new SelectList(_context.Actors, "Id", "FirstName");
+                TimeslotList = new SelectList(_context.Timeslot, "Id", "Description");
                 return Page();
             }
 
