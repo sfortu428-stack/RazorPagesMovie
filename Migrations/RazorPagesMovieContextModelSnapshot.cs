@@ -52,10 +52,27 @@ namespace RazorPagesMovie.Migrations
                 });
 
 
-                    b.ToTable("Admin");
-                });
+            modelBuilder.Entity("RazorPagesMovie.Models.Admin", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-=======
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                b.Property<string>("Username")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Password")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.HasKey("Id");
+
+                b.ToTable("Admin");
+            });
+
             modelBuilder.Entity("RazorPagesMovie.Models.Customers", b =>
                 {
                     b.Property<Guid>("Id")
