@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Humanizer;
+using Microsoft.EntityFrameworkCore;
+using RazorPagesMovie.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using RazorPagesMovie.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace RazorPagesMovie.Data
 {
@@ -20,6 +22,7 @@ namespace RazorPagesMovie.Data
         public DbSet<RazorPagesMovie.Models.Customers> Customers { get; set; } = default!;
         public DbSet<Admin> Admin { get; set; } = default!;
         public DbSet<RazorPagesMovie.Models.Review> Review { get; set; } = default!;
+        public DbSet<Review> Reviews { get; set; } = null!;
 
     }
     
