@@ -47,16 +47,12 @@
         @foreach (var item in Model.Movie)
         {
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card movie-card shadow-sm h-100">
+            <div class="card m-3" style="width: 20rem;">
 
-                    <img src="@item.ImageUrl"
-                    alt="@item.Title poster" class="img-fluid mb-2" style="height: 250px; width: 100%; object-fit: cover; border-radius: 8px;" />
-
-
-                    <!-- Optional Poster (use placeholder if no image) -->
-                    <img src="https://via.placeholder.com/600x300?text=@item.Title"
-                         class="card-img-top movie-img" alt="@item.Title" />
+                <img src="@(item.ImageUrl ?? Url.Content("~/img/no-poster.png"))"
+                     alt="@item.Title"
+                     class="card-img-top"
+                     onerror="this.src='/img/no-poster.png';" />
 
 
 
@@ -77,6 +73,8 @@
                         <p class="fw-bold">Price: <span class="text-success">@item.Price</span></p>
                         <p>Rating: <strong>@item.Rating</strong></p>
 
+
+
                         <div class="mt-auto pt-2">
                             <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm me-2">Edit</a>
                             <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm me-2">Details</a>
@@ -86,7 +84,6 @@
                     </div>
 
                 </div>
-            </div>
         }
 
     </div>
