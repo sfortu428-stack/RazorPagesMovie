@@ -20,7 +20,9 @@ namespace RazorPagesMovie.Data
         public DbSet<RazorPagesMovie.Models.Customers> Customers { get; set; } = default!;
         public DbSet<Admin> Admin { get; set; } = default!;
         public DbSet<RazorPagesMovie.Models.Review> Review { get; set; } = default!;
+        public DbSet<Timeslot>TimeSlot { get; set; } = default!;
+
 
     }
-    
+
 }
