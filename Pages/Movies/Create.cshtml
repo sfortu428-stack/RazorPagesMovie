@@ -47,6 +47,8 @@
         <select asp-for="Movie.ActorId" asp-items="Model.ActorList" class="form-control"></select>
     </div>
 
+
+
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
 
@@ -54,8 +56,17 @@
     <label asp-for="Movie.ImageUrl" class="control-label"></label>
     <input asp-for="Movie.ImageUrl" class="form-control" />
 </div>
+<div class="form-group">
+    <label asp-for="Movie.TimeslotId"></label>
+    <select asp-for="Movie.TimeslotId" class="form-control"
+            asp-items="Model.TimeslotList">
+        <option value="">Select a timeslot</option>
+    </select>
+    <span asp-validation-for="Movie.TimeslotId" class="text-danger"></span>
+</div>
 
 https://image.tmdb.org/t/p/w500/your-movie-poster.jpg
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

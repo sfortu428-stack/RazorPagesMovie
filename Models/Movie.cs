@@ -38,5 +38,5 @@ public class Movie
     public Actor? Actor { get; set; }
 
     public string ImageUrl { get; set; }
-
+    public object Reviews { get; internal set; }
 }

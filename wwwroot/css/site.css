@@ -90,3 +90,6 @@ img.movie-poster {
         z-index: -1;
     }
 
+footer {
+    display: none !important;
+}
