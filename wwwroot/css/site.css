@@ -15,7 +15,7 @@
 }
 /* Global dark theme */
 body {
-    background-color: #121212;
+    background-color: #2F3E46;
     color: #e5e5e5;
 }
 
@@ -35,7 +35,7 @@ body {
 
     /* Movie titles */
     .card h5 {
-        color: #ffffff;
+        color: #D0CDD7;
     }
 
 /* Inputs */
@@ -58,7 +58,7 @@ button, .btn-primary {
 
 /* Navbar */
 .navbar, footer {
-    background-color: #000 !important;
+    background-color: #2F3E46 !important;
     color: #fff;
 }
 
