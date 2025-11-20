@@ -165,6 +165,27 @@ namespace RazorPagesMovie.Pages
         private bool MovieExists(int id)
         {
             return _context.Movie.Any(e => e.Id == id);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        private async Task<IActionResult> AddReview([Bind(new[] { "MovieId,UserName,Rating,Comment" })] Review review)
+        {
+            if (ModelState.IsValid)
+            {
+                review.CreatedAt = DateTime.Now;
+                _context.Review.Add(review);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Details), new { id = review.MovieId });
+            }
+
+            // If invalid, reload the details page
+            var movie = await _context.Movie
+                .Include(m => m.Reviews)
+                .FirstOrDefaultAsync(m => m.Id == review.MovieId);
+
+            return View("Details", movie);
         }
     }
 }
