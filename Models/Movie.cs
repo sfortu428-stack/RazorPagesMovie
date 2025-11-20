@@ -37,7 +37,9 @@ public class Movie
     public int ActorId { get; set; }
     public Actor? Actor { get; set; }
 
-    public string ImageUrl { get; set; } = "/img/no-poster.png";
+    public string ImageUrl { get; set; }
+    public int? TimeslotId { get; set; }   // FK
+public Timeslot? Timeslot { get; set; } // Navigation Property
 
 
 }
