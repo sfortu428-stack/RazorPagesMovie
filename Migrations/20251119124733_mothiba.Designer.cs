@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorPagesMovie.Data;
 
@@ -11,9 +12,11 @@ using RazorPagesMovie.Data;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    partial class RazorPagesMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20251119124733_mothiba")]
+    partial class mothiba
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,11 +54,6 @@ namespace RazorPagesMovie.Migrations
                     b.ToTable("Actors");
                 });
 
-
-                    b.ToTable("Admin");
-                });
-
-=======
             modelBuilder.Entity("RazorPagesMovie.Models.Customers", b =>
                 {
                     b.Property<Guid>("Id")
@@ -134,9 +132,6 @@ namespace RazorPagesMovie.Migrations
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TimeslotId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -148,32 +143,7 @@ namespace RazorPagesMovie.Migrations
 
                     b.HasIndex("DirectorId");
 
-                    b.HasIndex("TimeslotId");
-
                     b.ToTable("Movie");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Timeslot", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Timeslot");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.Movie", b =>
@@ -190,15 +160,9 @@ namespace RazorPagesMovie.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RazorPagesMovie.Models.Timeslot", "Timeslot")
-                        .WithMany()
-                        .HasForeignKey("TimeslotId");
-
                     b.Navigation("Actor");
 
                     b.Navigation("Director");
-
-                    b.Navigation("Timeslot");
                 });
 #pragma warning restore 612, 618
         }
