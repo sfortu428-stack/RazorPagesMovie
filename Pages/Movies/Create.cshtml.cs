@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
@@ -20,20 +17,13 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; }
+        public Movie Movie { get; set; } = default!;
 
-        public SelectList DirectorList { get; set; }
-        public SelectList ActorList { get; set; }
         public SelectList TimeslotList { get; set; } = default!;
 
-
-
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-            DirectorList = new SelectList(_context.Director, "Id", "Name");
-            ActorList = new SelectList(_context.Actors, "Id", "FirstName");
-            TimeslotList = new SelectList(_context.Timeslot, "Id", "Description");
-
+            await LoadTimeslotsAsync();
             return Page();
         }
 
@@ -41,9 +31,7 @@ namespace RazorPagesMovie.Pages.Movies
         {
             if (!ModelState.IsValid)
             {
-                DirectorList = new SelectList(_context.Director, "Id", "Name");
-                ActorList = new SelectList(_context.Actors, "Id", "FirstName");
-                TimeslotList = new SelectList(_context.Timeslot, "Id", "Description");
+                await LoadTimeslotsAsync();
                 return Page();
             }
 
@@ -51,6 +39,20 @@ namespace RazorPagesMovie.Pages.Movies
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        private async Task LoadTimeslotsAsync()
+        {
+            var timeslots = await _context.Timeslot
+                .Select(t => new
+                {
+                    t.Id,
+                    Label = t.StartTime.ToString("HH:mm") + " - " + t.EndTime.ToString("HH:mm") +
+                            (!string.IsNullOrEmpty(t.Description) ? $" ({t.Description})" : "")
+                })
+                .ToListAsync();
+
+            TimeslotList = new SelectList(timeslots, "Id", "Label");
         }
     }
 }
