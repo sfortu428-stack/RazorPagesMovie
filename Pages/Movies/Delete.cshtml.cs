@@ -12,9 +12,9 @@ namespace RazorPagesMovie.Pages.Movies
 {
     public class DeleteModel : PageModel
     {
-        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
+        private readonly RazorPagesMovieContext _context;
 
-        public DeleteModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
+        public DeleteModel(RazorPagesMovieContext context)
         {
             _context = context;
         }
@@ -29,12 +29,14 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
+            // ⭐ Include Timeslot when loading movie
+            var movie = await _context.Movie
+                .Include(m => m.Timeslot)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (movie is not null)
             {
                 Movie = movie;
-
                 return Page();
             }
 

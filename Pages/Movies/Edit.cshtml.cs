@@ -23,6 +23,8 @@ namespace RazorPagesMovie.Pages.Movies
         [BindProperty]
         public Movie Movie { get; set; } = default!;
 
+        public SelectList TimeslotList { get; set; } = default!;
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -30,21 +32,38 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie =  await _context.Movie.FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _context.Movie
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (movie == null)
             {
                 return NotFound();
             }
+
+            // Assign movie BEFORE using Movie.TimeslotId
             Movie = movie;
+
+            TimeslotList = new SelectList(
+                await _context.Timeslot.ToListAsync(),
+                "Id",
+                "Description",
+                Movie.TimeslotId
+            );
+
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
+                // reload list if model state fails
+                TimeslotList = new SelectList(
+                    await _context.Timeslot.ToListAsync(),
+                    "Id",
+                    "Description"
+                );
+
                 return Page();
             }
 
