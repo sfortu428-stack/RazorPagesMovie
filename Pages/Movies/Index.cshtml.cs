@@ -20,60 +20,61 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
-        public IList<Movie> Movie { get; set; } = default!;
+        public IList<Movie> Movie { get; set; } = new List<Movie>();
 
-
-
-        // SEARCH FIELDS
+        // SEARCH
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
 
         // GENRE FILTER
         public SelectList? Genres { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public string? MovieGenre { get; set; }
 
         // TIMESLOT FILTER
         public SelectList? Timeslots { get; set; }
+
         [BindProperty(SupportsGet = true)]
-        public int? TimeslotId { get; set; }
+        public string? SelectedTimeslot { get; set; }
 
         public async Task OnGetAsync()
         {
-            // GENRE QUERY
+            // Get unique genres
             IQueryable<string> genreQuery =
                 from m in _context.Movie
                 orderby m.Genre
                 select m.Genre;
 
-            // BASE QUERY INCLUDING TIMESLOT
-            IQueryable<Movie> movies =
-                _context.Movie
-                .Include(m => m.Timeslot); // ← IMPORTANT
+            // Get unique timeslots
+            IQueryable<string> timeslotQuery =
+                from m in _context.Movie
+                where !string.IsNullOrEmpty(m.Timeslot)
+                orderby m.Timeslot
+                select m.Timeslot;
 
-            // SEARCH BY TITLE
+            // Base movie query
+            IQueryable<Movie> movies = _context.Movie
+                .Include(m => m.Director)
+                .Include(m => m.Actor);
+
+            // Filter by search string
             if (!string.IsNullOrEmpty(SearchString))
-            {
-                movies = movies.Where(s => s.Title.Contains(SearchString));
-            }
+                movies = movies.Where(m => m.Title.Contains(SearchString));
 
-            // FILTER BY GENRE
+            // Filter by genre
             if (!string.IsNullOrEmpty(MovieGenre))
-            {
-                movies = movies.Where(x => x.Genre == MovieGenre);
-            }
+                movies = movies.Where(m => m.Genre == MovieGenre);
 
-            // FILTER BY TIMESLOT
-            if (TimeslotId.HasValue && TimeslotId.Value > 0)
-            {
-                movies = movies.Where(m => m.TimeslotId == TimeslotId.Value);
-            }
+            // Filter by timeslot
+            if (!string.IsNullOrEmpty(SelectedTimeslot))
+                movies = movies.Where(m => m.Timeslot == SelectedTimeslot);
 
-            // POPULATE DROPDOWNS
+            // Populate dropdowns
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
             
 
-            // RETURN MOVIES
+            // Load movies
             Movie = await movies.ToListAsync();
         }
     }

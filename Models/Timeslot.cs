@@ -6,6 +6,7 @@ namespace RazorPagesMovie.Models
     public class Timeslot
     {
         public int Id { get; set; }
+     
 
         [Required]
         [Display(Name = "Start Time")]
@@ -17,5 +18,6 @@ namespace RazorPagesMovie.Models
 
         [StringLength(100)]
         public string? Description { get; set; }
+
     }
 }

@@ -39,16 +39,12 @@
         <span asp-validation-for="Movie.Rating" class="text-danger"></span>
     </div>
 
-    <!-- Optional: Show assigned Timeslot if exists -->
-    @if (Model.Movie?.Timeslot != null)
-    {
-        <div class="form-group">
-            <label>Timeslot</label>
-            <input class="form-control" 
-                   value="@($"{Model.Movie.Timeslot.StartTime:HH:mm} - {Model.Movie.Timeslot.EndTime:HH:mm} ({Model.Movie.Timeslot.Description})")" 
-                   readonly />
-        </div>
-    }
+    <!-- Timeslot -->
+    <div class="form-group">
+        <label asp-for="Movie.Timeslot"></label>
+        <input asp-for="Movie.Timeslot" class="form-control" />
+        <span asp-validation-for="Movie.Timeslot" class="text-danger"></span>
+    </div>
 
     <button type="submit" class="btn btn-primary">Create Movie</button>
 
