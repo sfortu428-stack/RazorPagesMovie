@@ -29,11 +29,10 @@
 
         <dt class="col-sm-2">Timeslot</dt>
         <dd class="col-sm-10">
-            @if (Model.Movie?.Timeslot != null)
+            @if (!string.IsNullOrEmpty(Model.Movie?.Timeslot))
             {
-                @($"{Model.Movie.Timeslot.StartTime:HH:mm} - {Model.Movie.Timeslot.EndTime:HH:mm}" +
-                            (string.IsNullOrEmpty(Model.Movie.Timeslot.Description) ? "" : $" ({Model.Movie.Timeslot.Description})"))
-                        }
+                @Model.Movie.Timeslot
+            }
             else
             {
                 <text>No Timeslot assigned</text>
