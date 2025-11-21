@@ -71,7 +71,7 @@ namespace RazorPagesMovie.Pages.Movies
 
             // POPULATE DROPDOWNS
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            Timeslots = new SelectList(await _context.Timeslot.ToListAsync(), "Id", "Name");
+            
 
             // RETURN MOVIES
             Movie = await movies.ToListAsync();

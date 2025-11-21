@@ -44,5 +44,6 @@ public Timeslot? Timeslot { get; set; } // Navigation Property
 
 
 
-    public object Reviews { get; internal set; }
+    public List<Review> Reviews { get; set; } = new();
+
 }

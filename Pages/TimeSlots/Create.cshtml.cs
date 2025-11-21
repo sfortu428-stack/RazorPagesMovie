@@ -35,7 +35,7 @@ namespace RazorPagesMovie.Pages.TimeSlots
                 return Page();
             }
 
-            _context.Timeslot.Add(Timeslot);
+          
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

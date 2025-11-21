@@ -23,21 +23,9 @@ namespace RazorPagesMovie.Pages.TimeSlots
         [BindProperty]
         public Timeslot Timeslot { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        
 
-            var timeslot =  await _context.Timeslot.FirstOrDefaultAsync(m => m.Id == id);
-            if (timeslot == null)
-            {
-                return NotFound();
-            }
-            Timeslot = timeslot;
-            return Page();
-        }
+            
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
@@ -50,28 +38,11 @@ namespace RazorPagesMovie.Pages.TimeSlots
 
             _context.Attach(Timeslot).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TimeslotExists(Timeslot.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            
 
             return RedirectToPage("./Index");
         }
 
-        private bool TimeslotExists(int id)
-        {
-            return _context.Timeslot.Any(e => e.Id == id);
-        }
+       
     }
 }
