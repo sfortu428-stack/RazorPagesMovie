@@ -44,7 +44,7 @@ namespace RazorPagesMovie.Pages.Movies
         private async Task LoadTimeslotsAsync()
         {
             var timeslots = await _context.Timeslot
-                .Select(t => new
+                .Select(static t => new
                 {
                     t.Id,
                     Label = t.StartTime.ToString("HH:mm") + " - " + t.EndTime.ToString("HH:mm") +

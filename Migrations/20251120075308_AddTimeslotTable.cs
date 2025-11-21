@@ -19,7 +19,7 @@ namespace RazorPagesMovie.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Timeslot",
-                columns: table => new
+                columns: static table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -27,9 +27,9 @@ namespace RazorPagesMovie.Migrations
                     EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
-                constraints: table =>
+                constraints: static table =>
                 {
-                    table.PrimaryKey("PK_Timeslot", x => x.Id);
+                    table.PrimaryKey("PK_Timeslot", static x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(

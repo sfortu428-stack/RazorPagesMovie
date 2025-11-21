@@ -13,7 +13,7 @@ namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
     [Migration("20251119124630_simon")]
-    partial class simon
+    partial class Simon
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

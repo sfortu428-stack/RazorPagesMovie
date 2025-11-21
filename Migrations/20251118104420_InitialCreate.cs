@@ -13,7 +13,7 @@ namespace RazorPagesMovie.Migrations
         {
             migrationBuilder.CreateTable(
                 name: "Actors",
-                columns: table => new
+                columns: static table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -22,28 +22,28 @@ namespace RazorPagesMovie.Migrations
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Nationality = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
-                constraints: table =>
+                constraints: static table =>
                 {
-                    table.PrimaryKey("PK_Actors", x => x.Id);
+                    table.PrimaryKey("PK_Actors", static x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Director",
-                columns: table => new
+                columns: static table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
-                constraints: table =>
+                constraints: static table =>
                 {
-                    table.PrimaryKey("PK_Director", x => x.Id);
+                    table.PrimaryKey("PK_Director", static x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Movie",
-                columns: table => new
+                columns: static table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -55,18 +55,18 @@ namespace RazorPagesMovie.Migrations
                     DirectorId = table.Column<int>(type: "int", nullable: false),
                     ActorId = table.Column<int>(type: "int", nullable: false)
                 },
-                constraints: table =>
+                constraints: static table =>
                 {
-                    table.PrimaryKey("PK_Movie", x => x.Id);
+                    table.PrimaryKey("PK_Movie", static x => x.Id);
                     table.ForeignKey(
                         name: "FK_Movie_Actors_ActorId",
-                        column: x => x.ActorId,
+                        column: static x => x.ActorId,
                         principalTable: "Actors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Movie_Director_DirectorId",
-                        column: x => x.DirectorId,
+                        column: static x => x.DirectorId,
                         principalTable: "Director",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);

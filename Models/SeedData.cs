@@ -41,19 +41,19 @@ public static class SeedData
             // Seed Movies (assign single actor)
             if (!context.Movie.Any())
             {
-                var robReiner = context.Director.First(d => d.Name == "Rob Reiner");
-                var moriswiSimon = context.Director.First(d => d.Name == "Moriswi Simon");
-                var leratoLee = context.Director.First(d => d.Name == "Lerato Lee");
-                var lucyMmasa = context.Director.First(d => d.Name == "Lucy Mmasa");
-                var mphoNkuna = context.Director.First(d => d.Name == "Mpho Nkuna");
-                var mothibaFortunate = context.Director.First(d => d.Name == "Mothiba Fortunate");
+                var robReiner = context.Director.First(static d => d.Name == "Rob Reiner");
+                var moriswiSimon = context.Director.First(static d => d.Name == "Moriswi Simon");
+                var leratoLee = context.Director.First(static d => d.Name == "Lerato Lee");
+                var lucyMmasa = context.Director.First(static d => d.Name == "Lucy Mmasa");
+                var mphoNkuna = context.Director.First(static d => d.Name == "Mpho Nkuna");
+                var mothibaFortunate = context.Director.First(static d => d.Name == "Mothiba Fortunate");
 
-                var leo = context.Actors.First(a => a.FirstName == "Leonardo" && a.LastName == "DiCaprio");
-                var samuel = context.Actors.First(a => a.FirstName == "Samuel" && a.LastName == "Jackson");
-                var meg = context.Actors.First(a => a.FirstName == "Meg" && a.LastName == "Ryan");
-                var matthew = context.Actors.First(a => a.FirstName == "Matthew" && a.LastName == "McConaughey");
-                var john = context.Actors.First(a => a.FirstName == "John" && a.LastName == "Travolta");
-                var jamie = context.Actors.First(a => a.FirstName == "Jamie" && a.LastName == "Foxx");
+                var leo = context.Actors.First(static a => a.FirstName == "Leonardo" && a.LastName == "DiCaprio");
+                var samuel = context.Actors.First(static a => a.FirstName == "Samuel" && a.LastName == "Jackson");
+                var meg = context.Actors.First(static a => a.FirstName == "Meg" && a.LastName == "Ryan");
+                var matthew = context.Actors.First(static a => a.FirstName == "Matthew" && a.LastName == "McConaughey");
+                var john = context.Actors.First(static a => a.FirstName == "John" && a.LastName == "Travolta");
+                var jamie = context.Actors.First(static a => a.FirstName == "Jamie" && a.LastName == "Foxx");
 
                 context.Movie.AddRange(
                     new Movie { Title = "When Harry Met Sally", ReleaseDate = new DateTime(1989, 2, 12), Genre = "Romantic Comedy", Price = 7.99M, Rating = "PG", DirectorId = robReiner.Id, ActorId = meg.Id, ImageUrl = "https://image.tmdb.org/t/p/w500/3VqHuw0e2Q2Fp0CqUqzrK6QHsqC.jpg" },

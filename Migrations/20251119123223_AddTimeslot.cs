@@ -13,16 +13,16 @@ namespace RazorPagesMovie.Migrations
         {
             migrationBuilder.CreateTable(
                 name: "Customers",
-                columns: table => new
+                columns: static table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
-                constraints: table =>
+                constraints: static table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_Customers", static x => x.Id);
                 });
         }
 

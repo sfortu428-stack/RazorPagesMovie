@@ -5,7 +5,7 @@
 namespace RazorPagesMovie.Migrations
 {
     /// <inheritdoc />
-    public partial class lucy : Migration
+    public partial class Lucy : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -9,6 +9,9 @@ namespace RazorPagesMovie.Data
 {
     public class RazorPagesMovieContext : DbContext
     {
+        public DbSet<Timeslot> Timeslot { get; set; }
+
+
         public RazorPagesMovieContext(DbContextOptions<RazorPagesMovieContext> options)
             : base(options)
         {

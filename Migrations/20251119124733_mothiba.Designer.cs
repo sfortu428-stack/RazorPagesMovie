@@ -13,7 +13,7 @@ namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
     [Migration("20251119124733_mothiba")]
-    partial class mothiba
+    partial class Mothiba
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

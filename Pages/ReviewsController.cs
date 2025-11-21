@@ -22,7 +22,7 @@ namespace RazorPagesMovie.Pages
         // GET: Reviews
         public async Task<IActionResult> Index()
         {
-            var razorPagesMovieContext = _context.Review.Include(r => r.movie);
+            var razorPagesMovieContext = _context.Review.Include(static r => r.movie);
             return View(await razorPagesMovieContext.ToListAsync());
         }
 
