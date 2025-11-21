@@ -29,14 +29,7 @@ namespace RazorPagesMovie.Pages.TimeSlots
                 return NotFound();
             }
 
-            var timeslot = await _context.Timeslot.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (timeslot is not null)
-            {
-                Timeslot = timeslot;
-
-                return Page();
-            }
+           
 
             return NotFound();
         }
@@ -48,13 +41,7 @@ namespace RazorPagesMovie.Pages.TimeSlots
                 return NotFound();
             }
 
-            var timeslot = await _context.Timeslot.FindAsync(id);
-            if (timeslot != null)
-            {
-                Timeslot = timeslot;
-                _context.Timeslot.Remove(Timeslot);
-                await _context.SaveChangesAsync();
-            }
+         
 
             return RedirectToPage("./Index");
         }

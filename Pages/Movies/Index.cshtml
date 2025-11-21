@@ -1,70 +1,122 @@
 ﻿@page
 @model RazorPagesMovie.Pages.Movies.IndexModel
+<div class="home-background">
 
 @{
     ViewData["Title"] = "Movies";
 }
 
-<h1>Movies</h1>
+<div class="container py-4">
 
-<form method="get" class="mb-3">
-    <p>
-        <label>Title: </label>
-        <input type="text" asp-for="SearchString" />
+    <!-- Header with Movie Icon -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5 fw-bold">
+            <i class="fa-solid fa-film" style="color:#00d1ff;"></i>
+            Movies
+        </h1>
 
-        <label>Genre: </label>
-        <select asp-for="MovieGenre" asp-items="Model.Genres">
-            <option value="">All</option>
-        </select>
+        <a class="btn btn-primary shadow-sm" asp-page="Create">
+            <i class="bi bi-plus-circle"></i> Create New
+        </a>
+    </div>
 
-        <label>Timeslot: </label>
-        <select asp-for="SelectedTimeslot" asp-items="Model.Timeslots">
-            <option value="">All Timeslots</option>
-        </select>
+    <!-- Filters -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
 
-        <input type="submit" value="Filter" class="btn btn-primary" />
-    </p>
-</form>
+            <form method="get" class="row gy-2 gx-3 align-items-end">
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Poster</th>
-            <th>Title</th>
-            <th>Release Date</th>
-            <th>Genre</th>
-            <th>Price</th>
-            <th>Rating</th>
-            <th>Timeslot</th>
-            <th>Director</th>
-            <th>Actor</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+                <!-- GENRE FILTER -->
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Genre</label>
+                    <select asp-for="MovieGenre" asp-items="Model.Genres" class="form-select">
+                        <option value="">All</option>
+                    </select>
+                </div>
+
+                <!-- TIMESLOT FILTER -->
+                <div class="col-md-3">
+                    <label class="form-label fw-semibold">Timeslot</label>
+                    <select asp-for="TimeslotId" asp-items="Model.Timeslots" class="form-select">
+                        <option value="0">All</option>
+                    </select>
+                </div>
+
+                <!-- TITLE FILTER -->
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Title</label>
+                    <input type="text" asp-for="SearchString" class="form-control" placeholder="Search movie…" />
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-dark w-100">
+                        Filter
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Movie List -->
+    <div class="row g-4">
+
         @foreach (var item in Model.Movie)
         {
-            <tr>
-                <td>
-                    @if (!string.IsNullOrEmpty(item.ImageUrl))
-                    {
-                        <img src="@item.ImageUrl" width="80" height="120" />
-                    }
-                </td>
-                <td>@item.Title</td>
-                <td>@item.ReleaseDate.ToString("yyyy-MM-dd")</td>
-                <td>@item.Genre</td>
-                <td>@item.Price</td>
-                <td>@item.Rating</td>
-                <td>@item.Timeslot</td>
-                <td>@item.Director?.Name</td>
-                <td>@item.Actor?.FirstName @item.Actor?.LastName</td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+            <div class="col-md-6 col-lg-4">
+                <div class="card movie-card shadow-sm h-100">
+
+                    <img src="@item.ImageUrl"
+                         alt="@item.Title poster" class="img-fluid mb-2" style="height: 250px; width: 100%; object-fit: cover; border-radius: 8px;" />
+
+                    <img src="https://via.placeholder.com/600x300?text=@item.Title"
+                         class="card-img-top movie-img" alt="@item.Title" />
+                         alt="@item.Title poster"
+                         class="img-fluid mb-2"
+                         style="height: 250px; width: 100%; object-fit: cover; border-radius: 8px;" />
+
+                    <img src="https://via.placeholder.com/600x300?text=@item.Title"
+                         class="card-img-top movie-img"
+                         alt="@item.Title" />
+
+                    <div class="card-body d-flex flex-column">
+
+                        <h5 class="card-title fw-bold">@item.Title</h5>
+
+                        <p class="text-show mb-1">
+                            <i class="bi bi-calendar-event"></i>
+                            @item.ReleaseDate.ToString("yyyy/MM/dd")
+                        </p>
+
+                        <p class="mb-1">
+                            <span class="badge bg-secondary">@item.Genre</span>
+                        </p>
+
+                        <!-- SHOW TIMESLOT -->
+                        <p class="mb-1">
+                            <i class="bi bi-clock-history"></i>
+                            <strong>Timeslot:</strong>
+
+
+                        </p>
+
+                        <p class="fw-bold">Price: <span class="text-success">@item.Price</span></p>
+                        <p>Rating: <strong>@item.Rating</strong></p>
+
+                        <div class="mt-auto pt-2">
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm me-2">Edit</a>
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm me-2">Details</a>
+                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                        </div>
+
+                          
+                    </div>
+
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+
+    </div>
+</div>
+</div>

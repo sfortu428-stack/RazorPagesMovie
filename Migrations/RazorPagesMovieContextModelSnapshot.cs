@@ -51,6 +51,27 @@ namespace RazorPagesMovie.Migrations
                     b.ToTable("Actors");
                 });
 
+            modelBuilder.Entity("RazorPagesMovie.Models.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admin");
+                });
+
             modelBuilder.Entity("RazorPagesMovie.Models.Customers", b =>
                 {
                     b.Property<Guid>("Id")
@@ -150,6 +171,38 @@ namespace RazorPagesMovie.Migrations
                     b.ToTable("Movie");
                 });
 
+            modelBuilder.Entity("RazorPagesMovie.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Review");
+                });
+
             modelBuilder.Entity("RazorPagesMovie.Models.Timeslot", b =>
                 {
                     b.Property<int>("Id")
@@ -170,7 +223,7 @@ namespace RazorPagesMovie.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Timeslot");
+                    b.ToTable("TimeSlot");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.Movie", b =>
@@ -190,6 +243,22 @@ namespace RazorPagesMovie.Migrations
                     b.Navigation("Actor");
 
                     b.Navigation("Director");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Review", b =>
+                {
+                    b.HasOne("RazorPagesMovie.Models.Movie", "movie")
+                        .WithMany("Reviews")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("movie");
+                });
+
+            modelBuilder.Entity("RazorPagesMovie.Models.Movie", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

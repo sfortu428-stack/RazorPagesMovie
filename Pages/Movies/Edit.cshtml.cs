@@ -43,13 +43,7 @@ namespace RazorPagesMovie.Pages.Movies
             // Assign movie BEFORE using Movie.TimeslotId
             Movie = movie;
 
-            TimeslotList = new SelectList(
-                await _context.Timeslot.ToListAsync(),
-                "Id",
-                "Description",
-                Movie.TimeslotId
-            );
-
+         
             return Page();
         }
 
@@ -58,11 +52,7 @@ namespace RazorPagesMovie.Pages.Movies
             if (!ModelState.IsValid)
             {
                 // reload list if model state fails
-                TimeslotList = new SelectList(
-                    await _context.Timeslot.ToListAsync(),
-                    "Id",
-                    "Description"
-                );
+               
 
                 return Page();
             }

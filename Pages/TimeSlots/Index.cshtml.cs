@@ -21,9 +21,6 @@ namespace RazorPagesMovie.Pages.TimeSlots
 
         public IList<Timeslot> Timeslot { get;set; } = default!;
 
-        public async Task OnGetAsync()
-        {
-            Timeslot = await _context.Timeslot.ToListAsync();
-        }
+       
     }
 }

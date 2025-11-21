@@ -47,4 +47,6 @@ public class Movie
 
 
 
+    public List<Review> Reviews { get; set; } = new();
+
 }

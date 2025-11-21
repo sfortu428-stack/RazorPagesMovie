@@ -72,7 +72,7 @@ namespace RazorPagesMovie.Pages.Movies
 
             // Populate dropdowns
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            Timeslots = new SelectList(await timeslotQuery.Distinct().ToListAsync());
+            
 
             // Load movies
             Movie = await movies.ToListAsync();
