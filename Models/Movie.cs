@@ -30,6 +30,7 @@ public class Movie
     public string Rating { get; set; } = string.Empty;
 
 
+
     public int DirectorId { get; set; }
     public Director? Director { get; set; }
 
@@ -38,5 +39,10 @@ public class Movie
     public Actor? Actor { get; set; }
 
     public string ImageUrl { get; set; }
+    public int? TimeslotId { get; set; }   // FK
+public Timeslot? Timeslot { get; set; } // Navigation Property
 
+
+
+    public object Reviews { get; internal set; }
 }

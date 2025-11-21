@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.TimeSlots
 {
     public class EditModel : PageModel
     {
@@ -21,9 +21,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; } = default!;
-
-        public SelectList TimeslotList { get; set; } = default!;
+        public Timeslot Timeslot { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,42 +30,25 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movie
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (movie == null)
+            var timeslot =  await _context.Timeslot.FirstOrDefaultAsync(m => m.Id == id);
+            if (timeslot == null)
             {
                 return NotFound();
             }
-
-            // Assign movie BEFORE using Movie.TimeslotId
-            Movie = movie;
-
-            TimeslotList = new SelectList(
-                await _context.Timeslot.ToListAsync(),
-                "Id",
-                "Description",
-                Movie.TimeslotId
-            );
-
+            Timeslot = timeslot;
             return Page();
         }
 
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                // reload list if model state fails
-                TimeslotList = new SelectList(
-                    await _context.Timeslot.ToListAsync(),
-                    "Id",
-                    "Description"
-                );
-
                 return Page();
             }
 
-            _context.Attach(Movie).State = EntityState.Modified;
+            _context.Attach(Timeslot).State = EntityState.Modified;
 
             try
             {
@@ -75,7 +56,7 @@ namespace RazorPagesMovie.Pages.Movies
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(Movie.Id))
+                if (!TimeslotExists(Timeslot.Id))
                 {
                     return NotFound();
                 }
@@ -88,9 +69,9 @@ namespace RazorPagesMovie.Pages.Movies
             return RedirectToPage("./Index");
         }
 
-        private bool MovieExists(int id)
+        private bool TimeslotExists(int id)
         {
-            return _context.Movie.Any(e => e.Id == id);
+            return _context.Timeslot.Any(e => e.Id == id);
         }
     }
 }
