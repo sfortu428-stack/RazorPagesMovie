@@ -33,10 +33,10 @@ namespace RazorPagesMovie.Pages.Movies
         public string? MovieGenre { get; set; }
 
         // TIMESLOT FILTER
-        public SelectList? Timeslots { get; set; }
-
         [BindProperty(SupportsGet = true)]
-        public string? SelectedTimeslot { get; set; }
+        public int TimeslotId { get; set; }
+
+        public List<SelectListItem> Timeslots { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -47,7 +47,7 @@ namespace RazorPagesMovie.Pages.Movies
                 select m.Genre;
 
             // Get unique timeslots
-            IQueryable<string> timeslotQuery =
+               IQueryable<string> timeslotQuery =
                 from m in _context.Movie
                 where !string.IsNullOrEmpty(m.Timeslot)
                 orderby m.Timeslot
@@ -67,13 +67,15 @@ namespace RazorPagesMovie.Pages.Movies
                 movies = movies.Where(m => m.Genre == MovieGenre);
 
             // Filter by timeslot
-            if (!string.IsNullOrEmpty(SelectedTimeslot))
-                movies = movies.Where(m => m.Timeslot == SelectedTimeslot);
+            if (TimeslotId > 0)
+                movies = movies.Where(m => m.TimeslotId == TimeslotId);
 
             // Populate dropdowns
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
+            Timeslots = (await timeslotQuery.Distinct().ToListAsync())
+    .Select(t => new SelectListItem { Value = t, Text = t })
+    .ToList();
             
-
             // Load movies
             Movie = await movies.ToListAsync();
         }
