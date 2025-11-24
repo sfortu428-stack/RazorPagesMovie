@@ -39,14 +39,7 @@ public class Movie
     public Actor? Actor { get; set; }
 
     public string ImageUrl { get; set; }
-    // Timeslot
-    public int? TimeslotId { get; set; }
-
-    public string Timeslot { get; set; } = string.Empty;
-
-
-
-
+  
     public List<Review> Reviews { get; set; } = new();
 
 }

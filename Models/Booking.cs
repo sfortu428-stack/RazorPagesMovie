@@ -15,7 +15,6 @@ namespace RazorPagesMovie.Models
         // Relationship with TimeSlot
         [Required]
         public int TimeslotId { get; set; }
-        public Timeslot Timeslot { get; set; }
 
         // Booking details
         [Required(ErrorMessage = "Customer name is required")]

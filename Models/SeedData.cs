@@ -75,7 +75,7 @@ namespace RazorPagesMovie.Models
                             DirectorId = robReiner.Id,
                             ActorId = meg.Id,
                             ImageUrl = "https://example.com/whenharrymetsally.jpg",
-                            Timeslot = "18:30"
+                            
                         },
                             new Movie { Title = "When Harry Met Sally", ReleaseDate = new DateTime(1989, 2, 12), Genre = "Romantic Comedy", Price = 7.99M, Rating = "PG", DirectorId = robReiner.Id, ActorId = meg.Id, ImageUrl = "https://image.tmdb.org/t/p/w500/3VqHuw0e2Q2Fp0CqUqzrK6QHsqC.jpg" },
                         new Movie { Title = "Inception", ReleaseDate = new DateTime(2010, 7, 16), Genre = "Sci-Fi", Price = 9.99M, Rating = "PG", DirectorId = moriswiSimon.Id, ActorId = leo.Id, ImageUrl = "https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg" },

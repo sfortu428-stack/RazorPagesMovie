@@ -46,13 +46,6 @@ namespace RazorPagesMovie.Pages.Movies
                 orderby m.Genre
                 select m.Genre;
 
-            // Get unique timeslots
-               IQueryable<string> timeslotQuery =
-                from m in _context.Movie
-                where !string.IsNullOrEmpty(m.Timeslot)
-                orderby m.Timeslot
-                select m.Timeslot;
-
             // Base movie query
             IQueryable<Movie> movies = _context.Movie
                 .Include(m => m.Director)
@@ -66,16 +59,8 @@ namespace RazorPagesMovie.Pages.Movies
             if (!string.IsNullOrEmpty(MovieGenre))
                 movies = movies.Where(m => m.Genre == MovieGenre);
 
-            // Filter by timeslot
-            if (TimeslotId > 0)
-                movies = movies.Where(m => m.TimeslotId == TimeslotId);
-
-            // Populate dropdowns
-            Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-            Timeslots = (await timeslotQuery.Distinct().ToListAsync())
-    .Select(t => new SelectListItem { Value = t, Text = t })
-    .ToList();
-            
+           
+         
             // Load movies
             Movie = await movies.ToListAsync();
         }

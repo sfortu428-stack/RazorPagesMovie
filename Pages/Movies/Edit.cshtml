@@ -49,20 +49,7 @@
                 <label asp-for="Movie.ImageUrl" class="control-label"></label>
                 <input asp-for="Movie.ImageUrl" class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="Movie.TimeslotId"></label>
-                <select asp-for="Movie.TimeslotId"
-                        asp-items="Model.TimeslotList"
-                        class="form-control">
-                    <option value="">-- Select Timeslot --</option>
-                </select>
-                <span asp-validation-for="Movie.TimeslotId" class="text-danger"></span>
-            </div>
-
-
-
-            https://image.tmdb.org/t/p/w500/your-movie-poster.jpg
-
+      
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

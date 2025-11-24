@@ -26,17 +26,18 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            var movie = await _context.Movie
-                .Include(m => m.Timeslot)   // ✅ include the Timeslot
+            Movie = await _context.Movie
+                .Include(m => m.Actor)
+                .Include(m => m.Director)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (movie == null)
+            if (Movie == null)
             {
                 return NotFound();
             }
 
-            Movie = movie;
             return Page();
         }
+
     }
 }
